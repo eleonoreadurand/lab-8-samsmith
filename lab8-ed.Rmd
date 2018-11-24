@@ -1,0 +1,33 @@
+---
+title: "lab8-regression"
+author: "Eleonore Durand"
+date: "November 24, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+salmon <- read_csv("salmon_fresh.csv") %>% 
+  select(year, salmon_fresh)
+
+```
+
+Exploration of the data :
+
+```{r}
+
+salmon_scatter <- ggplot(salmon, aes(x=year, y=salmon_fresh)) +
+  geom_point() +
+  theme_classic()
+
+salmon_scatter
+
+#overall there does seem to be a linear relationship between the year and the amount of salmon imported (lbs), but there seems to be two clusters of data (6 points total, that dont fit the model)
+
+```
+
