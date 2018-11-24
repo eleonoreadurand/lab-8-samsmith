@@ -31,3 +31,19 @@ salmon_scatter
 
 ```
 
+
+Now we do the linear regression:
+
+```{r}
+salmon_model <- lm(salmon_fresh ~ year, data = salmon)
+salmon_model
+
+
+#imports (in thousands of lbs)= -14982940 +7550(year) +error
+```
+
+• What does the slope mean in the context of this model?
+For every extra yr, the US imports goes up by 7550 thousands of lbs of salmon. 
+• What does the y-intercept mean in the context of this model? Why is that concerning? What does this
+mean about extrapolating this model for past values?
+The y intercept means that for year 0, the US imported -14,982,940 thousands lbs of salmon. This is concerning because it doesn't make sense to import negative amounts of salmon in year 0. This means that you cannot use this model to extrapolate estimates before a certain year. 
