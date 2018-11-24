@@ -97,3 +97,32 @@ l#evel : level of confidence interval to use. Default value is 0.95
 
 ```
 
+
+Make predictions using the model: 
+
+Let’s say we want to use our model to make predictions for U.S. fresh salmon imports in years 2022, 2024, 2026 and 2028.
+
+• Option 1 (not recommended): Plug each of those years into the model equation separately to calculate
+the expected U.S. imports.
+• Option 2 (recommended): Create a data frame containing the ‘new values’ that you want to make
+predictions for, feed that into the predict() function
+
+Let’s use Option 2. First, we’ll make a data frame called ‘new_years’ containing the sequence of years that we want to make predictions for. Notice that the column name we create is the SAME as the variable name‘year’ that the model
+
+```{r}
+new_years <- data.frame(year = c(2022, 2024, 2026, 2028))
+
+#Then feed that data frame into the predict() function, letting it know which model to use to make predictions for the new values.
+#Include interval = “confidence” to also report the lower and upper bounds of the 95% CI for model fit at each year.
+
+future_predict <- predict(salmon_model, newdata = new_years, interval = "confidence")
+future_predict
+
+# Bind the prediction outcomes (those are the values in column ‘fit’) with the ‘new_years’ data to actually create a useful table of predicted imports and upper and lower CI:
+
+predictions <- data.frame(new_years, future_predict)
+predictions
+
+
+```
+
