@@ -93,7 +93,7 @@ salmon_final_graph
 #method =“lm”: It fits a linear model. Note that, it’s also possible to indicate the formula as formula = y ~ poly(x, 3) to specify a degree 3 polynomial.
 #se : logical value. If TRUE, confidence interval is displayed around smooth.
 #fullrange : logical value. If TRUE, the fit spans the full range of the plot
-l#evel : level of confidence interval to use. Default value is 0.95
+#level : level of confidence interval to use. Default value is 0.95
 
 ```
 
@@ -126,3 +126,19 @@ predictions
 
 ```
 
+10. Find Pearson’s r (correlation)
+Use the cor.test() function to find Pearson’s r for the linear relationship described between year and salmon imports.
+
+```{r}
+pearsons_r <- cor.test(salmon$year, salmon$salmon_fresh)
+pearsons_r
+
+# pearsons' r is 0.974
+#There is a strong positive correlation. 
+
+```
+
+
+Concluding statement: 
+
+Year significantly predicts salmon imports (b= 7.550 10^3, t(26)= 21.72, p<0.001) with a strong positive correlation between the two (Pearson's r= 0.974). The overall model (salmon imports= 7550(year) -14982940, year in years and salmon imports in thousands of lbs) explains a significant amount of variance in salmon import (F(1,26)= 472, p<0.001, R^2=0.95)
