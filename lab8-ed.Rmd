@@ -60,3 +60,40 @@ Any concerns about heteroscedasticity or outliers?
 
 The residuals appear to be normally distributed according to the residuals vs fitted and the qq plots. However if there are three outlier points that are concerning/warrant a second look. 
 
+
+Model Fit
+
+```{r}
+
+summary(salmon_model)
+
+```
+
+Does year significantly predict salmon imports?
+• What does the R2 value actually mean in words?
+• What proportion of the variance in salmon imports is NOT explained by year?
+
+Year significantly predicts salmon imports (p <0.001), R2 = 0.9458 means that 94.6 % of the variance in salmon imports can be explained by year. 3.4% of the variance cannot be explained by year.
+
+Graph of Linear Regression Model 
+
+```{r}
+
+salmon_final_graph <- ggplot(salmon, aes(x = year, y = salmon_fresh)) +
+geom_point() +
+geom_smooth(method = lm, se = TRUE, size = 0.5, color = "gray20") +
+theme_bw() +
+scale_x_continuous(expand = c(0,0), limits = c(1990, 2017)) +
+labs(x = "Year", y = "U.S. Annual Fresh Salmon Imports\n(1,000 pounds)")
+
+salmon_final_graph
+
+#geom_smooth method : smoothing method to be used. Possible values are lm, glm, gam, loess, rlm.
+#method = “loess”: This is the default value for small number of observations. It computes a smooth local regression. You can read more about loess using the R code ?loess.
+#method =“lm”: It fits a linear model. Note that, it’s also possible to indicate the formula as formula = y ~ poly(x, 3) to specify a degree 3 polynomial.
+#se : logical value. If TRUE, confidence interval is displayed around smooth.
+#fullrange : logical value. If TRUE, the fit spans the full range of the plot
+l#evel : level of confidence interval to use. Default value is 0.95
+
+```
+
